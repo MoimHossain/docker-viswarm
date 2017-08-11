@@ -677,12 +677,8 @@ export default function getAllNodes() {
     return dispatch => {        
         axios.get('/api/nodes')
              .then(res => {
-				 console.log('### This is what api gave us.');
-				 console.log(res);
                  dispatch(getAllNodesAsync(res.data || []));
              }, error => {
-				 console.log('########### Failed to load nodes');
-				 console.log(error);
                  dispatch(getAllNodesAsync(___x.objects));
              });
     }

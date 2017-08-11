@@ -7,7 +7,7 @@ const WorkerNode = (node) => (
               <div key={node.ID} className="card">
                 <div className="content">                  
                   <img className="right floated mini ui image" 
-                    alt={node.Status.State} 
+                    title={node.Status.State} 
                     src={node.Status.State === 'ready' ? 'https://www.ctreap.net/images/icons32/accept.png' : 'https://www.nbninternational.com/checkout/Content/skins/099/images/icons_32/dialog-warning.png' }/>
                   <div className="header">                    
                     {node.Description.Hostname.toUpperCase()}

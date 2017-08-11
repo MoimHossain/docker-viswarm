@@ -12,8 +12,10 @@ class SideBar extends Component {
     render() {
         return (
             <div className="ui visible sidebar inverted vertical menu">
-                <a className="item"><div><i className="home icon"></i>This is a test</div></a>
-                <a className="item"><div><i className="home icon"></i>This is a test another</div></a>
+                <a className="item"><div><i className="server icon"></i>Swarm nodes</div></a>
+                <a className="item"><div><i className="connectdevelop icon"></i>Services</div></a>
+                <a className="item"><div><i className="codepen icon"></i>Tasks</div></a>
+                <a className="item"><div><i className="signal icon"></i>Networks</div></a>
             </div>
         );
     }

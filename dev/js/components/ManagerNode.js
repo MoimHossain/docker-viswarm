@@ -58,6 +58,7 @@ const ManagerNode = (node) => (
                   </div>
                 </div>
 
+
                 <div className="extra content">
                   <div className={node.ManagerStatus.Reachability === 'reachable'? 'green-text': 'red-text'}>
                     <i className="signal icon"></i>
