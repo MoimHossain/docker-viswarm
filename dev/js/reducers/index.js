@@ -1,6 +1,5 @@
 import {combineReducers} from 'redux';
 import NodeReducer from './reducer-nodes';
-import ActiveEisReducer from './reducer-active-eis';
 import { routerReducer } from 'react-router-redux'
 
 /*
@@ -10,7 +9,6 @@ import { routerReducer } from 'react-router-redux'
     
 const allReducers = combineReducers({
     nodes: NodeReducer,
-    activeEis: ActiveEisReducer,
     router: routerReducer
 });
 
