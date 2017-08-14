@@ -8,15 +8,26 @@ import TaskMatrix from './../components/TaskMatrix';
 
 class Tasks extends Component {
     componentDidMount() {      
-        this.props.loadNodes();
+        //this.props.loadNodes();
     }
     
+    renderNodeGroup(nodes) {
+        return (
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th className="center aligned" colSpan={2}><b>Manager</b></th>
+                    <th className="center aligned" colSpan={6}><b>Worker</b></th>
+                </tr>
+            </tfoot>
+        );
+    }
+
     renderNodeName(nodes) {
         return (
-            <thead>
+            <tfoot>
                 <tr>
-                    <th>
-                        Services
+                    <th>                        
                     </th>
                     {                        
                         nodes.map((node) => {
@@ -32,7 +43,7 @@ class Tasks extends Component {
                         })
                     }
                 </tr>
-            </thead>
+            </tfoot>
         );
     }
 
@@ -42,9 +53,12 @@ class Tasks extends Component {
                 <h3 className="ui dividing header">Swarm Tasks</h3>
               
               <div className="ui">
-                    <table className="ui collapsing table">
-                        {this.renderNodeName(this.props.nodes)}
+                    <table className="ui celled collapsing table">
+                        
                         {TaskMatrix(this.props.nodes)}
+                        {this.renderNodeGroup(this.props.nodes)}
+                        {this.renderNodeName(this.props.nodes)}
+                        
                     </table>
               </div>
           </div>

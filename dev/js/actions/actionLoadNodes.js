@@ -24,6 +24,9 @@ function mergeTasks(nodes, tasks) {
 }
 
 function fillTasks(nodes, onCompleted) {
+    nodes.sort((a, b)=> {
+        return a.Spec.Role.localeCompare(b.Spec.Role);
+    });
 	axios.get('/api/tasks')
 			.then(res => {
 				onCompleted(mergeTasks(nodes, res.data));

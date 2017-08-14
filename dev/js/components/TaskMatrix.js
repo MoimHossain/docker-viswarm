@@ -49,13 +49,14 @@ const GetArrangedByContainerSpec = (tasks) => {
 
 const Tasks = (node, tasks) => {
     return (
-        <td>
+        <td key={node.ID}>
             {
                 tasks.map((task) => {
                     if(node.ID === task.NodeID) {
                         return (
                         <img
-                            className="medium-icon"
+                            key={task.ID}
+                            className="medium-icon "
                             src="https://www.shareicon.net/download/2017/02/15/878943_media_512x512.png">
                         </img>);
                     } else {
@@ -67,14 +68,21 @@ const Tasks = (node, tasks) => {
     );
 }
 
+
 const TaskMatrix = (nodes) => (
     <tbody>
         {
-            GetArrangedByContainerSpec(GetAllTasks(nodes)).map((spec) => {
-                console.log(spec)
+            GetArrangedByContainerSpec(GetAllTasks(nodes)).map((spec) => {                
                 return (
                 <tr key={spec.specName}>
-                    <td>{StringUtils.truncateImageName(spec.specName)}</td>
+                    <td>
+                        <div className="item">
+                            <h3>{StringUtils.truncateImageName(spec.specName)}</h3>
+                            <div className="meta">
+                                <span>Replica: {spec.tasks.length}</span>
+                            </div>
+                        </div>
+                    </td>
                     {
                         nodes.map((node) => {
                             return Tasks(node, spec.tasks);

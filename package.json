@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack",
     "test": "mocha --reporter spec",    
-    "dev": "webpack-dev-server",
-    "start": "node server.js"
+    "start": "webpack-dev-server",
+    "run": "node server.js"
   },
   "repository": {
     "type": "git",
