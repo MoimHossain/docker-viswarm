@@ -25,7 +25,7 @@ class Tasks extends Component {
                                 <img
                                     className="medium-icon" 
                                     title={node.Description.Hostname} 
-                                    src="https://cdn0.iconfinder.com/data/icons/Hosting_Icons/128/dedicated-server-px-png.png">
+                                    src="http://pngimg.com/uploads/server/server_PNG8.png">
                                 </img>                
                             </th>
                             )
