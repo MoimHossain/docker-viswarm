@@ -79,7 +79,7 @@ const TaskMatrix = (nodes) => (
                         <div className="item">
                             <h3>{StringUtils.truncateImageName(spec.specName)}</h3>
                             <div className="meta">
-                                <span>Replica: {spec.tasks.length}</span>
+                                <span>Replica: <b>{spec.tasks.length}</b></span>
                             </div>
                         </div>
                     </td>
