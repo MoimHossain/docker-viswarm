@@ -10,7 +10,7 @@ import WorkerNode from './../components/WorkerNode';
 
 class Swarm extends Component {
     componentDidMount() {      
-        this.props.loadNodes();
+        // this.props.loadNodes();
     }
     
     genStats(nodes) {
