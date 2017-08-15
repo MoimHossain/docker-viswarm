@@ -70,9 +70,6 @@ const ManagerNode = (node) => (
           <button className="ui icon button">
             <i className="remove  icon"></i>
           </button>
-          <button className="ui icon button">
-            <i className="check circle  icon"></i>
-          </button>
         </span>
       </div>
     </div>

@@ -59,10 +59,7 @@ const WorkerNode = (node) => (
                     <span className="right floated star">
                         <button className="ui icon button">
                           <i className="remove  icon"></i>
-                        </button>
-                        <button className="ui icon button">
-                          <i className="check circle  icon"></i>
-                        </button>                        
+                        </button>                
                     </span>                    
                   </div>                  
                 </div>                
