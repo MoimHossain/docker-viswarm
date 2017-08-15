@@ -1,5 +1,7 @@
 import {combineReducers} from 'redux';
 import NodeReducer from './reducer-nodes';
+import ServiceReducer from './reducer-services';
+import NetworkReducer from './reducer-networks';
 import { routerReducer } from 'react-router-redux'
 
 /*
@@ -8,6 +10,8 @@ import { routerReducer } from 'react-router-redux'
  * */
     
 const allReducers = combineReducers({
+    networks: NetworkReducer,
+    services: ServiceReducer,
     nodes: NodeReducer,
     router: routerReducer
 });

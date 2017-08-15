@@ -4,30 +4,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import loadNodes from './../actions/actionLoadNodes';
-
+import loadServices from './../actions/actionLoadServices';
+import ServiceNode from './../components/ServiceNode';
 
 class Services extends Component {
     componentDidMount() {      
         this.props.loadServices();
     }
     
+    renderServices() {
+        return (
+            <div className="ui cards">
+            {
+                this.props.services.map((node) => {
+                    return ServiceNode(node);
+                })
+            } 
+            </div>            
+        );
+    }    
 
-    render() {
+    render() {        
       return (
-          <div className="ui segment work-space">
-              
+          <div className="ui segment work-space dimmed">              
               <h3 className="ui dividing header">Swarm Services</h3>
               
-              <div className="ui">
-                  <h3 className="ui dividing header">Managers</h3>              
-                  <h3 className="ui dividing header">Workers</h3>              
-              </div>
+              {this.renderServices()}
           </div>
       );
     }
 }
 
 export default connect(
-  (state)=> { return { nodes: state.nodes }; },
-  (dispatch) => { return bindActionCreators({loadNodes: loadNodes}, dispatch); })(Services);
+  (state)=> { return { services: state.services }; },
+  (dispatch) => { return bindActionCreators({loadServices: loadServices}, dispatch); })(Services);
