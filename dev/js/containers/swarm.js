@@ -63,7 +63,7 @@ class Swarm extends Component {
       return (
           <div className="ui segment work-space dimmed">
               
-              <h3 className="ui dividing header">Swarm Nodes</h3>
+              <h3 className="ui dividing header">Nodes</h3>
               {NodeState(this.genStats(this.props.nodes))}
 
               

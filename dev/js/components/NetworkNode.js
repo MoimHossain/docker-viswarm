@@ -12,6 +12,9 @@ const NetworkNode = (networkNode) => (
             <div className="header">
                 {networkNode.Name.toUpperCase()}
             </div>
+            <div className="meta">
+                <b>{(networkNode.Driver) + ' ' + (networkNode.Ingress ? 'Ingress' : '') + ' ' + (networkNode.EnableIPv6 ? 'IPv6 Enabled' : '')}</b>
+            </div>            
             <div className="ui list">
 
                 <div className="item">

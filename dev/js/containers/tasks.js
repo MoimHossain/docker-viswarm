@@ -52,7 +52,7 @@ class Tasks extends Component {
     render() {        
       return (
           <div className="ui segment work-space">              
-                <h3 className="ui dividing header">Swarm Tasks</h3>
+                <h3 className="ui dividing header">Tasks</h3>
               
               <div className="ui">
                     <table className="ui celled collapsing table">

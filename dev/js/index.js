@@ -35,7 +35,7 @@ ReactDOM.render(
             <div>
                 <Sidebar/>
                 <Switch>
-                    <Route exact path="/" component={SwarmPage}/>
+                    <Route exact path="/" component={Tasks}/>
                     <Route path="/nodes" component={SwarmPage}/>
                     <Route path="/services" component={Services}/>
                     <Route path="/tasks" component={Tasks}/>
