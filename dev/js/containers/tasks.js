@@ -46,7 +46,10 @@ class Tasks extends Component {
                                         src="https://s3.amazonaws.com/media.jetstrap.com/1Y3bmy5ISW2T6ZucFyxI_iconmonstr-server-4-icon-256.png">
                                     </img>
                                     <br />
-                                    <small className="clickable">{StringUtils.truncateNodeName(node.Description.Hostname)}</small>
+                                    <small 
+                                        className={(node.Status.State === 'ready' ? 'green-text' : 'red-text') + " clickable"}>
+                                        {StringUtils.truncateNodeName(node.Description.Hostname)}
+                                    </small>
                                 </th>
                             )
                         })

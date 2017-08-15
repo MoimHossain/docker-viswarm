@@ -6,15 +6,15 @@ import StringUtils from './../supports/string-utils';
 const NetworkNode = (networkNode) => (
     <div key={networkNode.Id} className="card">
         <div className="content">
-            <div className="right floated mini medium-icon"> 
+            <div className="right floated mini medium-icon">
                 <i className="signal icon"></i>
-            </div>            
+            </div>
             <div className="header">
                 {networkNode.Name.toUpperCase()}
             </div>
             <div className="meta">
                 <b>{(networkNode.Driver) + ' ' + (networkNode.Ingress ? 'Ingress' : '') + ' ' + (networkNode.EnableIPv6 ? 'IPv6 Enabled' : '')}</b>
-            </div>            
+            </div>
             <div className="ui list">
 
                 <div className="item">
@@ -35,11 +35,8 @@ const NetworkNode = (networkNode) => (
         <div className="extra content">
             <div>
                 <span className="right floated star">
-                    <button className="ui icon button">
+                    <button className="ui disabled icon button">
                         <i className="remove  icon"></i>
-                    </button>
-                    <button className="ui icon button">
-                        <i className="check circle  icon"></i>
                     </button>
                 </span>
             </div>

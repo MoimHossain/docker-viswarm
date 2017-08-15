@@ -26,7 +26,7 @@ const ServiceNode = (serviceNode) => (
                 <div className="item">
                     <i className="desktop icon"></i>
                     <div className="content">
-                        { ((serviceNode.Spec.Mode.Replicated || {}).Replicas || 0) + ' Replicas' }
+                        {((serviceNode.Spec.Mode.Replicated || {}).Replicas || 0) + ' Replicas'}
                     </div>
                 </div>
                 <div className="item">
@@ -47,11 +47,11 @@ const ServiceNode = (serviceNode) => (
         <div className="extra content">
             <div>
                 <span className="right floated star">
-                    <button className="ui icon button">
-                        <i className="remove  icon"></i>
+                    <button className="ui disabled icon button">
+                        <i className="pause icon"></i>
                     </button>
-                    <button className="ui icon button">
-                        <i className="check circle  icon"></i>
+                    <button className="ui disabled icon button">
+                        <i className="right arrow icon"></i>
                     </button>
                 </span>
             </div>

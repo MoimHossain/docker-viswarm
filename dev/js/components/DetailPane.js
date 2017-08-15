@@ -1,8 +1,8 @@
 
 
-import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import SizeUtils from './../supports/size-utils';
@@ -15,10 +15,10 @@ import TaskNode from './TaskNode';
 
 class DetailPane extends Component {
 
-    getName(artNode) {        
+    getName(artNode) {
         let caption = 'Nothing selected';
-        if(artNode) {
-            switch(artNode.ArtifactType) {
+        if (artNode) {
+            switch (artNode.ArtifactType) {
                 case ARTIFACTS.NODE: caption = artNode.Description.Hostname.toUpperCase(); break;
                 case ARTIFACTS.TASK: break;
                 default: break;
@@ -28,10 +28,10 @@ class DetailPane extends Component {
     }
 
     renderDetails(artNode) {
-        if(artNode) {
-            if(artNode.ArtifactType === ARTIFACTS.NODE) {
+        if (artNode) {
+            if (artNode.ArtifactType === ARTIFACTS.NODE) {
                 return artNode.ManagerStatus ? ManagerNode(artNode) : WorkerNode(artNode);
-            } else if(artNode.ArtifactType === ARTIFACTS.TASK) {
+            } else if (artNode.ArtifactType === ARTIFACTS.TASK) {
                 return TaskNode(artNode);
             }
         }
@@ -42,7 +42,7 @@ class DetailPane extends Component {
         return (
             <div className="four wide column">
                 <div className="ui ">
-                    <h3 className="ui dividing header">{ " " /*self.getName(this.props.activeArtifact)*/ }</h3>                     
+                    <h3 className="ui dividing header">{" " /*self.getName(this.props.activeArtifact)*/}</h3>
                     <div className="ui cards">
                         {this.renderDetails(this.props.activeArtifact)}
                     </div>
@@ -54,6 +54,6 @@ class DetailPane extends Component {
 
 
 export default connect(
-    (state)=> { return { activeArtifact: state.activeArtifact }; }, 
-    (dispatch) => { return bindActionCreators({ }, dispatch); })
-        (DetailPane);
+    (state) => { return { activeArtifact: state.activeArtifact }; },
+    (dispatch) => { return bindActionCreators({}, dispatch); })
+    (DetailPane);

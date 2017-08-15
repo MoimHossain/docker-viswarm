@@ -33,7 +33,7 @@ const TaskNode = (task) => (
                 {StringUtils.truncateImageName(task.Spec.ContainerSpec.Image)}
             </h5>
             <p>
-                ID:  <b>{StringUtils.truncateImageName(task.ID)}</b>
+                <b>{StringUtils.truncateImageName(task.ID)}</b>
             </p>
             <table className="ui definition table">
                 <tbody>
@@ -79,23 +79,10 @@ const TaskNode = (task) => (
                         <td title={task.ServiceID}>{StringUtils.truncate(task.ServiceID) }</td>
                     </tr>                                        
                 </tbody>
-            </table>                                  
-        </div>
+            </table>
+            <p>
 
-
-        <div className="extra content">
-            <div>
-                <i className="signal icon"></i>
-
-                <span className="right floated star">
-                    <button className="ui icon button">
-                        <i className="remove  icon"></i>
-                    </button>
-                    <button className="ui icon button">
-                        <i className="check circle  icon"></i>
-                    </button>
-                </span>
-            </div>
+            </p>
         </div>
     </div>
 );
