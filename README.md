@@ -4,7 +4,10 @@ A docker swarm cluster visualizer application. You can run it in container clust
 
 
 
-![Swarm nodes](http://imgur.com/a/jKKZX)
+
+
+![Sample image of  nodes with data](./screenshots/nodes.png)
+
 
 
 ## How to run
