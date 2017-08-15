@@ -1,7 +1,9 @@
+
 import React from 'react';
 import SizeUtils from './../supports/size-utils';
 import TimeUtils from './../supports/time-utils';
 import StringUtils from './../supports/string-utils';
+import * as ARTIFACTS from './../supports/nodeTypes';
 
 const GetAllTasks = (nodes) => {
     var tasks = [];
@@ -47,16 +49,19 @@ const GetArrangedByContainerSpec = (tasks) => {
     return cspecs;
 };
 
-const Tasks = (node, tasks) => {
+const Tasks = (node, tasks, actionDispatch) => {
     return (
-        <td key={node.ID}>
+        <td 
+            key={node.ID}            
+            >
             {
                 tasks.map((task) => {
                     if(node.ID === task.NodeID) {
                         return (
                         <img
                             key={task.ID}
-                            className="medium-icon "
+                            onClick={() => actionDispatch(task, ARTIFACTS.TASK)}
+                            className="medium-icon clickable"
                             src="https://www.shareicon.net/download/2017/02/15/878943_media_512x512.png">
                         </img>);
                     } else {
@@ -69,7 +74,7 @@ const Tasks = (node, tasks) => {
 }
 
 
-const TaskMatrix = (nodes) => (
+const TaskMatrix = (nodes, actionDispatch) => (    
     <tbody>
         {
             GetArrangedByContainerSpec(GetAllTasks(nodes)).map((spec) => {                
@@ -84,8 +89,8 @@ const TaskMatrix = (nodes) => (
                         </div>
                     </td>
                     {
-                        nodes.map((node) => {
-                            return Tasks(node, spec.tasks);
+                        nodes.map((node) => {                            
+                            return Tasks(node, spec.tasks, actionDispatch);
                         })
                     }
                 </tr>                    

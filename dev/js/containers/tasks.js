@@ -41,12 +41,12 @@ class Tasks extends Component {
                                     onClick={() => self.props.selectArtifact(node, ARTIFACTS.NODE)}
                                     className="center aligned">
                                     <img
-                                        className="medium-icon"
+                                        className="medium-icon clickable"
                                         title={node.Description.Hostname}
                                         src="https://s3.amazonaws.com/media.jetstrap.com/1Y3bmy5ISW2T6ZucFyxI_iconmonstr-server-4-icon-256.png">
                                     </img>
                                     <br />
-                                    <small>{StringUtils.truncateNodeName(node.Description.Hostname)}</small>
+                                    <small className="clickable">{StringUtils.truncateNodeName(node.Description.Hostname)}</small>
                                 </th>
                             )
                         })
@@ -65,7 +65,7 @@ class Tasks extends Component {
                     <h3 className="ui dividing header">Tasks</h3>
                     <div className="ui">
                         <table className="ui celled collapsing table">
-                            {TaskMatrix(self.props.nodes)}
+                            {TaskMatrix(self.props.nodes, function(art, artype) { self.props.selectArtifact(art, artype) } )}
                             {self.renderNodeGroup(self.props.nodes)}
                             {self.renderNodeName(self.props.nodes)}
                         </table>
