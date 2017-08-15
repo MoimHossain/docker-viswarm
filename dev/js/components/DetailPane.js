@@ -11,7 +11,7 @@ import * as ARTIFACTS from './../supports/nodeTypes';
 
 import ManagerNode from './ManagerNode';
 import WorkerNode from './WorkerNode';
-
+import TaskNode from './TaskNode';
 
 class DetailPane extends Component {
 
@@ -28,8 +28,12 @@ class DetailPane extends Component {
     }
 
     renderDetails(artNode) {
-        if(artNode && artNode.ArtifactType === ARTIFACTS.NODE) {
-            return artNode.ManagerStatus ? ManagerNode(artNode) : WorkerNode(artNode);
+        if(artNode) {
+            if(artNode.ArtifactType === ARTIFACTS.NODE) {
+                return artNode.ManagerStatus ? ManagerNode(artNode) : WorkerNode(artNode);
+            } else if(artNode.ArtifactType === ARTIFACTS.TASK) {
+                return TaskNode(artNode);
+            }
         }
     }
 

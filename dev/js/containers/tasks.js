@@ -68,6 +68,9 @@ class Tasks extends Component {
                 <div className="ui segment work-space">
                     <h3 className="ui dividing header">Tasks</h3>
                     <div className="ui">
+                        <div className="ignored ui success message">
+                            You are watching the actively running <i>tasks</i> in the <b>swarm</b>.
+                        </div>
                         <table className="ui celled collapsing table">
                             {TaskMatrix(self.props.nodes, self.actionDispatcher.bind(self) )}
                             {self.renderNodeGroup(self.props.nodes)}

@@ -2,6 +2,10 @@
 let maxLength = 16;
 
 module.exports = {
+    truncate: function(nodeName) {
+        if(nodeName.length <= 17) return nodeName;        
+        return nodeName.substring(0, 8) + '...' + nodeName.slice(-8);
+    },
     truncateNodeName: function(nodeName) {        
         if(nodeName.length <= 7) return nodeName;        
         return nodeName.substring(0, 3) + '...' + nodeName.slice(-3);
