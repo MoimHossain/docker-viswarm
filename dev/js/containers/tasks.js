@@ -56,6 +56,10 @@ class Tasks extends Component {
         );
     }
 
+    actionDispatcher(artNode, artType) {
+        this.props.selectArtifact(artNode, artType);
+    }
+
     render() {
         var self = this;        
         return (
@@ -65,7 +69,7 @@ class Tasks extends Component {
                     <h3 className="ui dividing header">Tasks</h3>
                     <div className="ui">
                         <table className="ui celled collapsing table">
-                            {TaskMatrix(self.props.nodes, function(art, artype) { self.props.selectArtifact(art, artype) } )}
+                            {TaskMatrix(self.props.nodes, self.actionDispatcher.bind(self) )}
                             {self.renderNodeGroup(self.props.nodes)}
                             {self.renderNodeName(self.props.nodes)}
                         </table>
