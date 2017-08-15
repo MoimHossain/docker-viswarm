@@ -1,6 +1,10 @@
 # Docker swarm visualizer
 
-A docker swarm cluster visualizer
+A docker swarm cluster visualizer application. You can run it in container cluster and use as a dashboard to visualize the service-task distributions among nodes in realtime.
+
+Inline-style: 
+![alt text](http://imgur.com/a/jKKZX "Swarm nodes")
+
 
 ## How to run
 
