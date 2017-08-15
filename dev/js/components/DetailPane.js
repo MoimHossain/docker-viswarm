@@ -7,20 +7,40 @@ import { Link } from 'react-router';
 
 import SizeUtils from './../supports/size-utils';
 import TimeUtils from './../supports/time-utils';
+import * as ARTIFACTS from './../supports/nodeTypes';
+
+import ManagerNode from './ManagerNode';
+import WorkerNode from './WorkerNode';
 
 
 class DetailPane extends Component {
-    componentDidMount() {
-     
+
+    getName(artNode) {        
+        let caption = 'Nothing selected';
+        if(artNode) {
+            switch(artNode.ArtifactType) {
+                case ARTIFACTS.NODE: caption = artNode.Description.Hostname.toUpperCase(); break;
+                case ARTIFACTS.TASK: break;
+                default: break;
+            }
+        }
+        return caption;
+    }
+
+    renderDetails(artNode) {
+        if(artNode && artNode.ArtifactType === ARTIFACTS.NODE) {
+            return artNode.ManagerStatus ? ManagerNode(artNode) : WorkerNode(artNode);
+        }
     }
 
     render() {
+        var self = this;
         return (
             <div className="four wide column">
-                <div className="ui segment">
-                    <h3 className="ui dividing header">Tasks</h3>
-                    <div className="ui">
-                        {this.props.activeArtifact ? this.props.activeArtifact.ID : 'nothing selected'}
+                <div className="ui ">
+                    <h3 className="ui dividing header">{ " " /*self.getName(this.props.activeArtifact)*/ }</h3>                     
+                    <div className="ui cards">
+                        {this.renderDetails(this.props.activeArtifact)}
                     </div>
                 </div>
             </div>

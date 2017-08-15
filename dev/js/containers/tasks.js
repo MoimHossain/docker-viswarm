@@ -31,15 +31,15 @@ class Tasks extends Component {
         return (
             <tfoot>
                 <tr>
-                    <th>
-                    </th>
+                    <td>
+                    </td>
                     {
                         nodes.map((node) => {                            
                             return (
                                 <th 
                                     key={node.ID} 
                                     onClick={() => self.props.selectArtifact(node, ARTIFACTS.NODE)}
-                                    className="center aligned">
+                                    className="center aligned hover-effect">
                                     <img
                                         className="medium-icon clickable"
                                         title={node.Description.Hostname}
