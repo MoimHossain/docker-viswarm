@@ -2,11 +2,7 @@
 
 A docker swarm cluster visualizer application. You can run it in container cluster and use as a dashboard to visualize the service-task distributions among nodes in realtime.
 
-
-
-
-
-![Sample image of  nodes with data](./screenshots/nodes.png)
+![alt text](https://raw.githubusercontent.com/MoimHossain/docker-viswarm/master/screenshots/nodes.png)
 
 
 
