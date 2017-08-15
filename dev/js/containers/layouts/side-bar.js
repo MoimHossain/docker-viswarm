@@ -13,7 +13,7 @@ class SideBar extends Component {
 
     render() {
         return (
-            <div className="ui  visible sidebar inverted vertical menu">
+            <div className="ui thin  visible sidebar inverted vertical menu">
                 <a className="item" onClick={() => history.push('/tasks') }><div><i className="codepen icon"></i>Tasks</div></a>
                 <a className="item" onClick={() => history.push('/nodes') }><div><i className="server icon"></i>Nodes</div></a>
                 <a className="item" onClick={() => history.push('/services') }><div><i className="connectdevelop icon"></i>Services</div></a>                

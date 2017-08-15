@@ -1,8 +1,13 @@
+
+
 import {combineReducers} from 'redux';
+import { routerReducer } from 'react-router-redux';
+
 import NodeReducer from './reducer-nodes';
 import ServiceReducer from './reducer-services';
 import NetworkReducer from './reducer-networks';
-import { routerReducer } from 'react-router-redux'
+import ActiveArtifactReducer from './reducer-activeArtifact';
+
 
 /*
  * We combine all reducers into a single object before updated data is dispatched (sent) to store
@@ -10,6 +15,7 @@ import { routerReducer } from 'react-router-redux'
  * */
     
 const allReducers = combineReducers({
+    activeArtifact: ActiveArtifactReducer,
     networks: NetworkReducer,
     services: ServiceReducer,
     nodes: NodeReducer,
