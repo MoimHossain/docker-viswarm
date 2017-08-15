@@ -27,8 +27,7 @@ class Services extends Component {
     render() {        
       return (
           <div className="ui segment work-space dimmed">              
-              <h3 className="ui dividing header">Services</h3>
-              
+              <h3 className="ui dividing header">Services</h3>              
               {this.renderServices()}
           </div>
       );
