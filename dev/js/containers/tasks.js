@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import loadNodes from './../actions/actionLoadNodes';
-
+import StringUtils from './../supports/string-utils';
 import TaskMatrix from './../components/TaskMatrix';
 
 class Tasks extends Component {
@@ -32,12 +32,14 @@ class Tasks extends Component {
                     {                        
                         nodes.map((node) => {
                             return (
-                            <th key={node.ID}>
+                            <th key={node.ID} className="center aligned">
                                 <img
                                     className="medium-icon" 
                                     title={node.Description.Hostname} 
                                     src="http://pngimg.com/uploads/server/server_PNG8.png">
-                                </img>                
+                                </img>
+                                <br/>
+                                <small>{StringUtils.truncateNodeName(node.Description.Hostname)}</small>
                             </th>
                             )
                         })
