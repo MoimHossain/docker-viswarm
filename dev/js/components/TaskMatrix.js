@@ -53,7 +53,7 @@ const Tasks = (node, tasks, actionDispatch) => {
     return (
         <td 
             key={node.ID}
-            className="hover-effect"
+            //className="hover-effect"
             >
             {
                 tasks.map((task) => {
@@ -62,7 +62,7 @@ const Tasks = (node, tasks, actionDispatch) => {
                         <img
                             key={task.ID}
                             onClick={() => actionDispatch(task, ARTIFACTS.TASK)}
-                            className="medium-icon clickable"
+                            className="medium-icon docker-container clickable"
                             src="https://www.shareicon.net/download/2017/02/15/878943_media_512x512.png">
                         </img>);
                     } else {
