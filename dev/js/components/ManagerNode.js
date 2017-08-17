@@ -3,7 +3,7 @@ import SizeUtils from './../supports/size-utils';
 import TimeUtils from './../supports/time-utils';
 
 
-const ManagerNode = (node) => (
+const ManagerNode = (node, deleteNode) => (
   <div key={node.ID} className="card">
 
     <div className="content">
@@ -67,7 +67,9 @@ const ManagerNode = (node) => (
         <i className="signal icon"></i>
         <b>{node.ManagerStatus.Reachability === 'reachable' ? 'Reachable' : 'Unreachable'}</b>
         <span className="right floated star">
-          <button className="ui icon button">
+          <button 
+            onClick={()=> deleteNode(node)}
+            className="ui icon button">
             <i className="remove  icon"></i>
           </button>
         </span>

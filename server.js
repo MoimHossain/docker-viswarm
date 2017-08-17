@@ -6,7 +6,7 @@ var Docker = require('dockerode');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static('src'))
+app.use('/app', express.static('src'))
 
 var port = process.env.PORT || 9009;        // set our port
 
@@ -31,6 +31,8 @@ router.get('/images', function(req, res) {
         res.json(images);
     });
 });
+
+
 router.get('/networks', function(req, res) {
     
     var docker = new Docker();
@@ -54,6 +56,24 @@ router.get('/nodes', function(req, res) {
     docker.listNodes(function(err, nodes) {
         res.json(nodes);
     });
+});
+
+router.delete('/nodes/:nodeId', function(req, res) {
+    if(req.params.nodeId) {
+        console.log('Request DELETE NODE ID=' + req.params.nodeId)
+        var docker = new Docker();
+        docker.listNodes({all: true}, function(err, nodes) {
+            nodes.forEach((node) => {                
+                if(node.ID === req.params.nodeId) {
+                    node.remove({force: true}, function(nres) {
+                        res.json(nres);
+                    });
+                }
+            });
+        });
+    } else {
+        res.json({ message: 'Invalid operation.' });
+    }
 });
 
 router.get('/services', function(req, res) {

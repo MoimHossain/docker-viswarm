@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import loadNodes from './../actions/actionLoadNodes';
+import deleteNode from './../actions/actionDeleteNode';
 
 import NodeState from './../components/NodeState';
 import ManagerNode from './../components/ManagerNode';
@@ -10,7 +10,11 @@ import WorkerNode from './../components/WorkerNode';
 
 class Swarm extends Component {
     componentDidMount() {      
-        // this.props.loadNodes();
+
+    }
+
+    deleteSwarmNode(node) {
+        this.props.deleteNode(node);
     }
     
     genStats(nodes) {
@@ -37,7 +41,7 @@ class Swarm extends Component {
             {
                 this.props.nodes.map((node) => {
                     if(node.Spec.Role === 'manager') {
-                      return ManagerNode(node);
+                      return ManagerNode(node, this.deleteSwarmNode.bind(this));
                     }
                 })
             } 
@@ -51,7 +55,7 @@ class Swarm extends Component {
             {
                 this.props.nodes.map((node) => {
                     if(node.Spec.Role === 'worker') {
-                      return WorkerNode(node);
+                      return WorkerNode(node, this.deleteSwarmNode.bind(this));
                     }
                 })
             } 
@@ -80,4 +84,4 @@ class Swarm extends Component {
 
 export default connect(
   (state)=> { return { nodes: state.nodes }; },
-  (dispatch) => { return bindActionCreators({loadNodes: loadNodes}, dispatch); })(Swarm);
+  (dispatch) => { return bindActionCreators({deleteNode: deleteNode}, dispatch); })(Swarm);

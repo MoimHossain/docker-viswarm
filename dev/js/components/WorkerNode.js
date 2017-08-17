@@ -3,7 +3,7 @@ import SizeUtils from './../supports/size-utils';
 import TimeUtils from './../supports/time-utils';
 
 
-const WorkerNode = (node) => (
+const WorkerNode = (node, deleteNode) => (
               <div key={node.ID} className="card">
                 <div className="content">                  
                   <img className="right floated mini ui image" 
@@ -57,7 +57,9 @@ const WorkerNode = (node) => (
                     <i className="signal icon"></i>
                     <b>{node.Status.State === 'ready'? 'Ready' : 'Down'}</b>
                     <span className="right floated star">
-                        <button className="ui icon button">
+                        <button 
+                          onClick={()=> deleteNode(node)}
+                          className="ui icon button">
                           <i className="remove  icon"></i>
                         </button>                
                     </span>                    

@@ -10,7 +10,7 @@ const NetworkNode = (networkNode) => (
                 <i className="signal icon"></i>
             </div>
             <div className="header">
-                {networkNode.Name.toUpperCase()}
+                {StringUtils.truncate(networkNode.Name.toUpperCase())}
             </div>
             <div className="meta">
                 <b>{(networkNode.Driver) + ' ' + (networkNode.Ingress ? 'Ingress' : '') + ' ' + (networkNode.EnableIPv6 ? 'IPv6 Enabled' : '')}</b>
