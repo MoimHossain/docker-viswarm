@@ -6,7 +6,7 @@ var Docker = require('dockerode');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/app', express.static('src'))
+app.use(express.static('src'))
 
 var port = process.env.PORT || 9009;        // set our port
 
