@@ -42,8 +42,8 @@ export default function getAllNodes() {
 				 fillTasks(res.data, function(nodesWithTasks){
                     dispatch(getAllNodesAsync(nodesWithTasks));
 				 });
-             }, error => {
-				 fillTasks(nodesDEMO.objects, function(nodesWithTasks){
+             }, error => {                 
+				 fillTasks(JSON.parse(JSON.stringify(nodesDEMO.objects)), function(nodesWithTasks){
                     dispatch(getAllNodesAsync(nodesWithTasks));
 				 });
              });

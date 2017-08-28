@@ -6,12 +6,12 @@
   "scripts": {
     "build": "webpack",
     "test": "mocha --reporter spec",    
-    "run": "webpack-dev-server",
-    "start": "node server.js"
+    "start": "webpack-dev-server",
+    "run": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "github.com\\moim"
+    "url": "https://github.com/MoimHossain/docker-viswarm"
   },
   "keywords": [
     "nodejs",

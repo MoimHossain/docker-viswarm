@@ -18,6 +18,7 @@ import Services from './containers/services';
 import Tasks from './containers/tasks';
 import Networks from './containers/networks';
 import Sidebar from './containers/layouts/side-bar';
+import ThreeDView from './containers/threedview';
 
 
 import RepeatApp from './supports/repeat-app';
@@ -36,6 +37,7 @@ ReactDOM.render(
                 <Sidebar/>
                 <Switch>
                     <Route exact path="/" component={Tasks}/>
+                    <Route path="/3d" component={ThreeDView} />
                     <Route path="/nodes" component={SwarmPage}/>
                     <Route path="/services" component={Services}/>
                     <Route path="/tasks" component={Tasks}/>

@@ -52,8 +52,7 @@ const GetArrangedByContainerSpec = (tasks) => {
 const Tasks = (node, tasks, actionDispatch) => {
     return (
         <td 
-            key={node.ID}
-            //className="hover-effect"
+            key={node.ID}            
             >
             {
                 tasks.map((task) => {
