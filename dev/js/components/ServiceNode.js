@@ -3,7 +3,7 @@ import SizeUtils from './../supports/size-utils';
 import TimeUtils from './../supports/time-utils';
 import StringUtils from './../supports/string-utils';
 
-const ServiceNode = (serviceNode) => (
+const ServiceNode = (serviceNode, onEdit) => (
     <div key={serviceNode.ID} className="card">
         <div className="content">
             <img className="right floated mini medium-icon"
@@ -50,8 +50,12 @@ const ServiceNode = (serviceNode) => (
                     <button className="ui disabled icon button">
                         <i className="pause icon"></i>
                     </button>
-                    <button className="ui disabled icon button">
-                        <i className="right arrow icon"></i>
+                    <button 
+                        className="ui icon button"
+                        onClick={() => onEdit && onEdit(serviceNode)}
+                        title="Edit Service"
+                    >
+                        <i className="edit icon"></i>
                     </button>
                 </span>
             </div>

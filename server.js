@@ -84,6 +84,60 @@ router.get('/services', function(req, res) {
         res.json(nodes);
     });
 });
+
+router.put('/services/:serviceId', function(req, res) {
+    if(!req.params.serviceId) {
+        return res.status(400).json({ message: 'Service ID is required' });
+    }
+    
+    var docker = new Docker();
+    var service = docker.getService(req.params.serviceId);
+    
+    // Get current service spec
+    service.inspect(function(err, serviceData) {
+        if(err) {
+            console.error('Error inspecting service:', err);
+            return res.status(500).json({ message: 'Failed to get service details' });
+        }
+        
+        // Prepare update spec based on current service
+        var updateSpec = serviceData.Spec;
+        
+        // Update image if provided
+        if(req.body.image) {
+            updateSpec.TaskTemplate.ContainerSpec.Image = req.body.image;
+        }
+        
+        // Update replicas if provided
+        if(req.body.replicas !== undefined) {
+            if(updateSpec.Mode.Replicated) {
+                updateSpec.Mode.Replicated.Replicas = parseInt(req.body.replicas);
+            }
+        }
+        
+        // Update service with new spec
+        var updateOptions = {
+            version: serviceData.Version.Index
+        };
+        
+        service.update(updateOptions, updateSpec, function(updateErr, result) {
+            if(updateErr) {
+                console.error('Error updating service:', updateErr);
+                return res.status(500).json({ message: 'Failed to update service' });
+            }
+            
+            // Return updated service data
+            service.inspect(function(inspectErr, updatedServiceData) {
+                if(inspectErr) {
+                    console.error('Error getting updated service:', inspectErr);
+                    return res.status(500).json({ message: 'Service updated but failed to retrieve updated data' });
+                }
+                res.json(updatedServiceData);
+            });
+        });
+    });
+});
+
 router.get('/tasks', function(req, res) {
     
     var docker = new Docker();
