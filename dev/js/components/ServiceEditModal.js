@@ -20,10 +20,22 @@ class ServiceEditModal extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        
+        // Basic validation
+        if (!this.state.image.trim()) {
+            alert('Image name is required');
+            return;
+        }
+        
+        if (this.state.replicas < 0) {
+            alert('Replicas must be 0 or greater');
+            return;
+        }
+        
         this.setState({ isSubmitting: true });
         
         const updateData = {
-            image: this.state.image,
+            image: this.state.image.trim(),
             replicas: this.state.replicas
         };
         
@@ -47,6 +59,7 @@ class ServiceEditModal extends Component {
                                 value={this.state.image}
                                 onChange={this.handleImageChange}
                                 placeholder="e.g., nginx:latest"
+                                required
                             />
                         </div>
                         <div className="field">
@@ -56,6 +69,7 @@ class ServiceEditModal extends Component {
                                 value={this.state.replicas}
                                 onChange={this.handleReplicasChange}
                                 min="0"
+                                required
                             />
                         </div>
                     </form>
