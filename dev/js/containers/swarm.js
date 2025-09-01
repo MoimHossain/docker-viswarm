@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import deleteNode from './../actions/actionDeleteNode';
+import updateNodeLabels from './../actions/actionUpdateNodeLabels';
 
 import NodeState from './../components/NodeState';
 import ManagerNode from './../components/ManagerNode';
@@ -15,6 +16,10 @@ class Swarm extends Component {
 
     deleteSwarmNode(node) {
         this.props.deleteNode(node);
+    }
+
+    updateSwarmNodeLabels(nodeId, labels) {
+        this.props.updateNodeLabels(nodeId, labels);
     }
     
     genStats(nodes) {
@@ -41,7 +46,7 @@ class Swarm extends Component {
             {
                 this.props.nodes.map((node) => {
                     if(node.Spec.Role === 'manager') {
-                      return ManagerNode(node, this.deleteSwarmNode.bind(this));
+                      return ManagerNode(node, this.deleteSwarmNode.bind(this), this.updateSwarmNodeLabels.bind(this));
                     }
                 })
             } 
@@ -55,7 +60,7 @@ class Swarm extends Component {
             {
                 this.props.nodes.map((node) => {
                     if(node.Spec.Role === 'worker') {
-                      return WorkerNode(node, this.deleteSwarmNode.bind(this));
+                      return WorkerNode(node, this.deleteSwarmNode.bind(this), this.updateSwarmNodeLabels.bind(this));
                     }
                 })
             } 
@@ -84,4 +89,4 @@ class Swarm extends Component {
 
 export default connect(
   (state)=> { return { nodes: state.nodes }; },
-  (dispatch) => { return bindActionCreators({deleteNode: deleteNode}, dispatch); })(Swarm);
+  (dispatch) => { return bindActionCreators({deleteNode: deleteNode, updateNodeLabels: updateNodeLabels}, dispatch); })(Swarm);

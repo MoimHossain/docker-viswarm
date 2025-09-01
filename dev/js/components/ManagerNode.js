@@ -1,9 +1,10 @@
 import React from 'react';
 import SizeUtils from './../supports/size-utils';
 import TimeUtils from './../supports/time-utils';
+import LabelEditor from './LabelEditor';
 
 
-const ManagerNode = (node, deleteNode) => (
+const ManagerNode = (node, deleteNode, updateNodeLabels) => (
   <div key={node.ID} className="card">
 
     <div className="content">
@@ -57,6 +58,10 @@ const ManagerNode = (node, deleteNode) => (
           </div>
         </div>
 
+        <LabelEditor 
+          labels={node.Spec.Labels || {}}
+          onSave={(labels) => updateNodeLabels(node.ID, labels)}
+        />
 
       </div>
     </div>

@@ -1,9 +1,10 @@
 import React from 'react';
 import SizeUtils from './../supports/size-utils';
 import TimeUtils from './../supports/time-utils';
+import LabelEditor from './LabelEditor';
 
 
-const WorkerNode = (node, deleteNode) => (
+const WorkerNode = (node, deleteNode, updateNodeLabels) => (
               <div key={node.ID} className="card">
                 <div className="content">                  
                   <img className="right floated mini ui image" 
@@ -48,6 +49,10 @@ const WorkerNode = (node, deleteNode) => (
                       </div>
                     </div>
 
+                    <LabelEditor 
+                      labels={node.Spec.Labels || {}}
+                      onSave={(labels) => updateNodeLabels(node.ID, labels)}
+                    />
                     
                   </div>
                 </div>

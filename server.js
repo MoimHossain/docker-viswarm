@@ -76,6 +76,51 @@ router.delete('/nodes/:nodeId', function(req, res) {
     }
 });
 
+router.put('/nodes/:nodeId/labels', function(req, res) {
+    if(req.params.nodeId && req.body.labels) {
+        console.log('Request UPDATE NODE LABELS ID=' + req.params.nodeId);
+        var docker = new Docker();
+        docker.listNodes({all: true}, function(err, nodes) {
+            if (err) {
+                res.status(500).json({ error: 'Failed to list nodes' });
+                return;
+            }
+            
+            var targetNode = nodes.find(node => node.ID === req.params.nodeId);
+            if (!targetNode) {
+                res.status(404).json({ error: 'Node not found' });
+                return;
+            }
+            
+            // Get the node object for updating
+            var nodeObj = docker.getNode(req.params.nodeId);
+            
+            // Update the node with new labels
+            var updateSpec = {
+                Labels: req.body.labels,
+                Role: targetNode.Spec.Role,
+                Availability: targetNode.Spec.Availability
+            };
+            
+            var updateOptions = {
+                version: targetNode.Version.Index
+            };
+            
+            nodeObj.update(updateSpec, updateOptions, function(updateErr, result) {
+                if (updateErr) {
+                    console.error('Error updating node labels:', updateErr);
+                    res.status(500).json({ error: 'Failed to update node labels', details: updateErr });
+                } else {
+                    console.log('Node labels updated successfully');
+                    res.json({ success: true, message: 'Node labels updated successfully' });
+                }
+            });
+        });
+    } else {
+        res.status(400).json({ error: 'Invalid request. NodeId and labels are required.' });
+    }
+});
+
 router.get('/services', function(req, res) {
     
     var docker = new Docker();
