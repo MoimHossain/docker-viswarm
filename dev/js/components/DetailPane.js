@@ -8,6 +8,7 @@ import { Link } from 'react-router';
 import SizeUtils from './../supports/size-utils';
 import TimeUtils from './../supports/time-utils';
 import * as ARTIFACTS from './../supports/nodeTypes';
+import deleteTask from './../actions/actionDeleteTask';
 
 import ManagerNode from './ManagerNode';
 import WorkerNode from './WorkerNode';
@@ -32,6 +33,12 @@ class DetailPane extends Component {
             if (artNode.ArtifactType === ARTIFACTS.NODE) {
                 return artNode.ManagerStatus ? ManagerNode(artNode) : WorkerNode(artNode);
             } else if (artNode.ArtifactType === ARTIFACTS.TASK) {
+                // Pass the stop task handler to TaskNode
+                artNode.onStopTask = (task) => {
+                    if(confirm('Are you sure you want to stop this task?')) {
+                        this.props.deleteTask(task);
+                    }
+                };
                 return TaskNode(artNode);
             }
         }
@@ -55,5 +62,7 @@ class DetailPane extends Component {
 
 export default connect(
     (state) => { return { activeArtifact: state.activeArtifact }; },
-    (dispatch) => { return bindActionCreators({}, dispatch); })
+    (dispatch) => { return bindActionCreators({
+        deleteTask: deleteTask
+    }, dispatch); })
     (DetailPane);

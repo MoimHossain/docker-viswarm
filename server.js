@@ -93,6 +93,49 @@ router.get('/tasks', function(req, res) {
     });
 });
 
+router.delete('/tasks/:taskId', function(req, res) {
+    if(req.params.taskId) {
+        console.log('Request DELETE TASK ID=' + req.params.taskId)
+        var docker = new Docker();
+        docker.listTasks({all: true}, function(err, tasks) {
+            if (err) {
+                return res.status(500).json({ message: 'Error listing tasks: ' + err.message });
+            }
+            
+            var targetTask = null;
+            tasks.forEach((task) => {                
+                if(task.ID === req.params.taskId) {
+                    targetTask = task;
+                }
+            });
+            
+            if (!targetTask) {
+                return res.status(404).json({ message: 'Task not found' });
+            }
+            
+            // Get the container ID from task status
+            if (targetTask.Status && targetTask.Status.ContainerStatus && targetTask.Status.ContainerStatus.ContainerID) {
+                var containerId = targetTask.Status.ContainerStatus.ContainerID;
+                var container = docker.getContainer(containerId);
+                
+                container.stop({force: true}, function(stopErr, data) {
+                    if (stopErr) {
+                        console.log('Error stopping container:', stopErr);
+                        return res.status(500).json({ message: 'Error stopping task container: ' + stopErr.message });
+                    }
+                    
+                    console.log('Successfully stopped task container:', containerId);
+                    res.json({ message: 'Task stopped successfully', taskId: req.params.taskId, containerId: containerId });
+                });
+            } else {
+                res.status(400).json({ message: 'Task has no running container to stop' });
+            }
+        });
+    } else {
+        res.json({ message: 'Invalid operation.' });
+    }
+});
+
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------

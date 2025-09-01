@@ -80,6 +80,20 @@ const TaskNode = (task) => (
                     </tr>                                        
                 </tbody>
             </table>
+            <div className="extra content">
+                <div>
+                    <span className="right floated">
+                        {task.Status.State === 'running' && (
+                            <button 
+                                className="ui red icon button"
+                                onClick={() => task.onStopTask && task.onStopTask(task)}
+                                title="Stop Task">
+                                <i className="stop icon"></i>
+                            </button>
+                        )}
+                    </span>
+                </div>
+            </div>
             <p>
 
             </p>

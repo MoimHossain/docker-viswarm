@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import loadNodes from './../actions/actionLoadNodes';
 import selectArtifact from './../actions/actionSelectArtifact';
+import deleteTask from './../actions/actionDeleteTask';
 import StringUtils from './../supports/string-utils';
 import TaskMatrix from './../components/TaskMatrix';
 import DetailPane from './../components/DetailPane';
@@ -63,6 +64,12 @@ class Tasks extends Component {
         this.props.selectArtifact(artNode, artType);
     }
 
+    stopTaskDispatcher(task) {
+        if(confirm('Are you sure you want to stop this task?')) {
+            this.props.deleteTask(task);
+        }
+    }
+
     render() {
         var self = this;        
         return (
@@ -75,7 +82,7 @@ class Tasks extends Component {
                             You are watching the actively running <i>tasks</i> in the <b>swarm</b>.
                         </div>
                         <table className="ui celled collapsing table">
-                            {TaskMatrix(self.props.nodes, self.actionDispatcher.bind(self) )}
+                            {TaskMatrix(self.props.nodes, self.actionDispatcher.bind(self), self.stopTaskDispatcher.bind(self) )}
                             {self.renderNodeGroup(self.props.nodes)}
                             {self.renderNodeName(self.props.nodes)}
                         </table>
@@ -93,5 +100,6 @@ export default connect(
     (dispatch) => { return bindActionCreators(
         { 
             selectArtifact: selectArtifact,
-            loadNodes: loadNodes 
+            loadNodes: loadNodes,
+            deleteTask: deleteTask 
         }, dispatch); })(Tasks);

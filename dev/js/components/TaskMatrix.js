@@ -49,7 +49,7 @@ const GetArrangedByContainerSpec = (tasks) => {
     return cspecs;
 };
 
-const Tasks = (node, tasks, actionDispatch) => {
+const Tasks = (node, tasks, actionDispatch, stopTaskDispatch) => {
     return (
         <td 
             key={node.ID}            
@@ -58,12 +58,37 @@ const Tasks = (node, tasks, actionDispatch) => {
                 tasks.map((task) => {
                     if(node.ID === task.NodeID) {
                         return (
-                        <img
-                            key={task.ID}
-                            onClick={() => actionDispatch(task, ARTIFACTS.TASK)}
-                            className="medium-icon docker-container clickable"
-                            src="https://www.shareicon.net/download/2017/02/15/878943_media_512x512.png">
-                        </img>);
+                            <div key={task.ID} style={{position: 'relative', display: 'inline-block'}}>
+                                <img
+                                    onClick={() => actionDispatch(task, ARTIFACTS.TASK)}
+                                    className="medium-icon docker-container clickable"
+                                    src="https://www.shareicon.net/download/2017/02/15/878943_media_512x512.png">
+                                </img>
+                                {task.Status.State === 'running' && (
+                                    <button 
+                                        style={{
+                                            position: 'absolute', 
+                                            top: '-5px', 
+                                            right: '-5px', 
+                                            width: '16px', 
+                                            height: '16px',
+                                            borderRadius: '50%',
+                                            border: 'none',
+                                            backgroundColor: '#dc3545',
+                                            color: 'white',
+                                            fontSize: '10px',
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            stopTaskDispatch && stopTaskDispatch(task);
+                                        }}
+                                        title="Stop Task">
+                                        ×
+                                    </button>
+                                )}
+                            </div>
+                        );
                     } else {
                         return '';
                     }
@@ -74,7 +99,7 @@ const Tasks = (node, tasks, actionDispatch) => {
 }
 
 
-const TaskMatrix = (nodes, actionDispatch) => (    
+const TaskMatrix = (nodes, actionDispatch, stopTaskDispatch) => (    
     <tbody>
         {
             GetArrangedByContainerSpec(GetAllTasks(nodes)).map((spec) => {                
@@ -90,7 +115,7 @@ const TaskMatrix = (nodes, actionDispatch) => (
                     </td>
                     {
                         nodes.map((node) => {                            
-                            return Tasks(node, spec.tasks, actionDispatch);
+                            return Tasks(node, spec.tasks, actionDispatch, stopTaskDispatch);
                         })
                     }
                 </tr>                    

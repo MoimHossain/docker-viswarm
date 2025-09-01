@@ -7,3 +7,4 @@ export const GET_NETWORKS = "LOAD_NETWORKS";
 
 
 export const DELETE_NODE = 'DELETE_NODE';
+export const DELETE_TASK = 'DELETE_TASK';
